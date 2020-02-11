@@ -13,14 +13,18 @@
 
     <div class = "overlay">
         <h1 class="locktext">Welcome</h1>
-
+        <form action="http://localhost:3000/users" method="post">
         <div class="sign-in">
-        <label for="username">Username</label>
-        <input id= "username" type="text" name="name" placeholder="Insert Username"/>
-        <label for="name">Name</label>
-        <input id= "name" type="text" name="name" placeholder="Insert Name"/>
-        <input type="submit" value="Add"/>
+        <!-- <label for="username">Username</label> -->
+        <input type="text" name="username" placeholder="Insert Name"/>
+        <!-- <label for="name">Name</label> -->
+        <input type="text" name="name" placeholder="Insert Username"/>
+        <!-- <form action="http://localhost:3001/showuser.html" method="get"> -->
+            <input type="submit" value="Sign-In">
+            <button onclick=`location.href = 'http://localhost:3000/showuser.html'`>
+            <!-- </form> -->
         </div>
+    </form>
         
     </div>
 
