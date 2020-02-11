@@ -11,10 +11,12 @@ fetch(`http://localhost:3000/playlists/${id}`)
 function showplaylist(playlist){
     let h1 = document.createElement('h1')
     h1.innerText = `${playlist.name}`
-    // console.log(playlist.name)
-    document.body.appendChild(h1)
-    playlist.song.
-    let p = document.createElement('p')
-    p.innerHTML = `<a href='showsong.html?=id${playlist.song.title}'> ${playlist.song.title}</a>`
-    document.appendChild(p)
+
+    playlist.songs.map(song =>{
+        let p = document.createElement('p')
+        p.innerHTML = `<a href='showsong.html?id=${song.id}'> ${song.title}</a>`
+
+    document.body.append(h1, p)
+
+    })
 }

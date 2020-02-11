@@ -10,24 +10,16 @@
 <body>
     <main class="main">
     <h1 class="into">J&J Misica app</h1>
-
-    <div class = "overlay">
+    <div class="overlay">
         <h1 class="locktext">Welcome</h1>
-        <form action="http://localhost:3000/users" method="post">
-        <div class="sign-in">
-        <!-- <label for="username">Username</label> -->
-        <input type="text" name="username" placeholder="Insert Name"/>
-        <!-- <label for="name">Name</label> -->
-        <input type="text" name="name" placeholder="Insert Username"/>
-        <!-- <form action="http://localhost:3001/showuser.html" method="get"> -->
-            <input type="submit" value="Sign-In" onclick=`location.href = 'http://localhost:3000/showuser.html'`>
-            <!-- <button > -->
-            <!-- </form> -->
-        </div>
-    </form>
-        
+        <form action="http://localhost:3000/users" method="post" class="sign-in">
+            <label for="username">Username</label>
+            <input type="text" name="username" placeholder="Insert Name"/>
+            <label for="name">Name</label>
+            <input type="text" name="name" placeholder="Insert Username"/>
+            <input type = "button" value = "sign-in"/>
+        </form>
     </div>
-
     </main>
     <script src = "app.js"> </script>
 </body>
