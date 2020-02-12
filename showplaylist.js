@@ -20,3 +20,12 @@ function showplaylist(playlist){
 
     })
 }
+function myHome() {
+    location.replace(`http://localhost:3001/showuser.html?id=${id}`)
+  }
+  function myPlaylist() {
+    location.replace(`http://localhost:3001/showplaylist.html?id=${id}`)
+  }
+  function mySong() {
+    location.replace(`http://localhost:3001/showsong.html?id=${id}`)
+  }
