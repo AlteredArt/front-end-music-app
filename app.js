@@ -12,21 +12,26 @@ fetch('http://localhost:3000/users')
                 const existingUser = users.find(user => {
                     return user.username == textField.value
                 })
+                console.log(existingUser)
                 if (existingUser){
                     window.location = `showuser.html?id=${existingUser.id}`
                 }
-                else if (!existingUser){ 
+                else{ 
                     const formdata = new FormData(form)
                     const name = formdata.get('name')
                     const username = formdata.get('username')
                     createUsers = {username: username, name: name}
                     fetch('http://localhost:3000/users', { 
-                    method: 'POST',
-                    headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify(createUsers)
-                  })
-                  window.location = `showuser.html?id=${User.id}`
+                        method: 'POST',
+                        headers: {'Content-Type': 'application/json'},
+                        body: JSON.stringify(createUsers),
+                    })
+                    .then( 
+                        fetch('http://localhost:3000/users')
+                        .then(response => response.json())
+                        .then(newuser => {
+                            console.log(newuser)
+                        }))
                 }   
-         
-            }
-        })
+        }
+    })
