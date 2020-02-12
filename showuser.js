@@ -8,7 +8,7 @@ fetch(`http://localhost:3000/users/${id}`)
 
     function showuser(user){
         let h1 = document.createElement('h1')
-        h1.innerText = `${user.name}`
+        h1.innerText = `${user.username}`
        
         user.playlists.map(playlist =>{
             let p = document.createElement('p')
