@@ -12,11 +12,9 @@ function showplaylist(playlist){
     const playSongDiv = document.querySelector("#playsong-div")
     let h1 = document.createElement('h1')
     h1.innerText = `${playlist.name}`
-
     playlist.songs.map(song =>{
         let p = document.createElement('p')
         p.innerHTML = `<a href='showsong.html?id=${song.id}'> ${song.title}</a>`
-
         playSongDiv.append(h1, p)
 
     })
@@ -66,3 +64,38 @@ const ul = document.querySelector('ul')
         li.append(form)
         return li
     }
+    
+    const textField = document.querySelector("#search-for")
+    const searchSong = document.querySelector("#search-song")
+    searchSong.addEventListener("submit", (event) => {
+        event.preventDefault()
+        
+        fetch(`https://deezerdevs-deezer.p.rapidapi.com/search?q=${textField.value}`, {
+            "method": "GET",
+            "headers": {
+                "x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com",
+                "x-rapidapi-key": "8384d17005mshf5e19b1581270a5p14f6bdjsn356be895ec06"
+            }})
+            .then(response => response.json())
+            .then(api => findSong(api.data))
+            
+            function findSong(songs){
+                // console.log(songs)
+                const allSongs = songs.filter(song => {
+                    return song.title.includes(textField.value);
+                })
+                if(allSongs){
+                    allSongs.map(song =>{
+                    const SongDiv = document.querySelector("#song-div")
+                    // alert("its working kinda")
+                    let h1 = document.createElement('h1')
+                    h1.innerHTML = `<a href='showsong.html?id=${song.id}'> ${song.title}</a>`
+                    console.log(song)
+                    SongDiv.appendChild(h1)
+                    })
+                }
+                else{
+                    alert("Oh no, you suck!")
+                }
+            }
+        })
