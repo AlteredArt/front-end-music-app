@@ -28,13 +28,15 @@
     background-repeat: no-repeat;}
  
   form {
-    width: 250px;
-    height: 05rem;}
+    width:200px;
+    height: 3rem;
+  }
   input{
     width: 90%;
     display: block;
     margin-bottom: 0.5rem;
-    padding: 0.25rem;}
+    padding: 0.25rem;
+  }
 
   #page-look{
     padding: 25px;
@@ -51,20 +53,23 @@
     list-style-type: none;
     margin: 0;
     padding: 02rem;
-    padding-bottom: 25rem;
+    padding-bottom: 5rem;
     font-size: xx-large;
     width: 400px;
     color: white;
-    align-content: center;
-    text-decoration: underline;}
+    align-content: center;}
+    
 
     #playsong-div{
-      text-decoration: underline;
-
+      color: blanchedalmond;
+      font-size: xx-large;
     }
   
+    #song-div{
+      color: blanchedalmond;
+    }
 
-
+    
 
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
