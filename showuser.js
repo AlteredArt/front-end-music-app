@@ -25,7 +25,7 @@ fetch(`http://localhost:3000/playlists`)
     playlist.map(userToElement)
       // .map(userUpdate)
       .map(appendToUl)
-    userUpdate()
+    playlistCreate()
     })
 
 function userToElement(playlist) {
@@ -40,7 +40,7 @@ function userToElement(playlist) {
 function appendToUl(li) {
   classUl.append(li)
 }
-function userUpdate() {
+function playlistCreate() {
   const form = document.createElement("form")
   form.action = `http://localhost:3000/playlists`
   form.method = "POST"

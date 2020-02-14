@@ -23,7 +23,7 @@
 
   body {
     font-family: 'Montserrat', sans-serif;
-    /* background-color: blanchedalmond; */
+    background-color: blanchedalmond;
     background-image: linear-gradient(to bottom right, brown, rgb(39, 23, 107));
     background-repeat: no-repeat;}
  
@@ -91,7 +91,6 @@ time, mark, audio, video {
 	font: inherit;
 	vertical-align: baseline;
 }
-/* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section {
 	display: block;
@@ -113,4 +112,7 @@ q:before, q:after {
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
+}
+#playlis{
+  
 }
