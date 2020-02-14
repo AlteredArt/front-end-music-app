@@ -9,7 +9,7 @@ fetch(`http://localhost:3000/songs/${id}`)
 
 console.log('show song page')
 function showsinglesong(song){
-    const SongDiv = document.querySelector("#song-div")
+    const SongDiv = document.querySelector("#song-info")
     let title = document.createElement('h1')
     let artist = document.createElement('p')
     let album = document.createElement('p')
