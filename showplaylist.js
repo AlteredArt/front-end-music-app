@@ -25,7 +25,6 @@ function showplaylist(playlist) {
 const ul = document.querySelector('ul')
 fetch("http://localhost:3000/playlists")
     .then(response => response.json())
-    // .then(console.log)
     .then(playlist => playlist
         .map(userToElement)
         .map(userUpdate)
@@ -69,6 +68,7 @@ function userUpdate(li) {
     return li
 }
 
+
 const textField = document.querySelector("#search-for")
 const searchSong = document.querySelector("#search-song")
 searchSong.addEventListener("submit", (event) => {
@@ -83,11 +83,10 @@ searchSong.addEventListener("submit", (event) => {
             return songs.title.toLowerCase() === textField.value.toLowerCase()
         })
         if (song) {
-                const SongDiv = document.querySelector("#song-div")
-                // alert("its working kinda")
-                let h1 = document.createElement('h1')
-                h1.innerHTML = `<a href='showsong.html?id=${song.id}'> ${song.title}</a>`
-                SongDiv.appendChild(h1)
+                const SongDiv = document.querySelector("#playsong-div")
+                let h2 = document.createElement('h2')
+                h2.innerHTML = `<a href='showsong.html?id=${song.id}'> ${song.title}</a>`
+                SongDiv.appendChild(h2)
             }
          else{
             alert("Oh no, you suck!")

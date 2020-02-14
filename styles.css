@@ -59,8 +59,9 @@ body {
     -ms-transform: translate(-50%, -50%);
   }
   .buttons{
-    margin-left: 42%;
-    margin-top: 37%;
+    position: absolute;
+    top: 53%;
+    left: 44%;
   }
   #button {
     background-color: black;
