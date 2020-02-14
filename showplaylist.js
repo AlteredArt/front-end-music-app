@@ -8,11 +8,11 @@ fetch(`http://localhost:3000/playlists/${id}`)
     .then(showplaylist)
 
 
-function showplaylist(playlist){
+function showplaylist(playlist) {
     const playSongDiv = document.querySelector("#playsong-div")
     let h1 = document.createElement('h1')
     h1.innerText = `${playlist.name}`
-    playlist.songs.map(song =>{
+    playlist.songs.map(song => {
         let p = document.createElement('p')
         p.innerHTML = `<a href='showsong.html?id=${song.id}'> ${song.title}</a>`
         playSongDiv.append(h1, p)
@@ -23,79 +23,74 @@ function showplaylist(playlist){
 
 
 const ul = document.querySelector('ul')
-    fetch("http://localhost:3000/playlists")
-      .then(response => response.json())
-      // .then(console.log)
-      .then(playlist => playlist 
+fetch("http://localhost:3000/playlists")
+    .then(response => response.json())
+    // .then(console.log)
+    .then(playlist => playlist
         .map(userToElement)
         .map(userUpdate)
         .map(userDelete)
         .forEach(appendToUl)
     )
-    function userToElement(playlist) {
-        const li = document.createElement('li')
-        li.dataset.id = playlist.id
-        li.dataset.name = playlist.name
-        return li
-    }
-    function appendToUl(li) {
-        ul.append(li)
-    }
-    function userDelete(li) {
-        const form = document.createElement("form")
-        form.action = `http://localhost:3000/playlists/${li.dataset.id}`
-        form.method = "POST"
-        form.innerHTML = `
+
+function userToElement(playlist) {
+    const li = document.createElement('li')
+    li.dataset.id = playlist.id
+    li.dataset.name = playlist.name
+    return li
+}
+
+function appendToUl(li) {
+    ul.append(li)
+}
+
+function userDelete(li) {
+    const form = document.createElement("form")
+    form.action = `http://localhost:3000/playlists/${li.dataset.id}`
+    form.method = "POST"
+    form.innerHTML = `
         <input type="submit" value="Delete playlist"/>
         <input type="hidden" name="_method" value="delete"/>
         `
-        li.append(form)
-        return li
-    }
-    function userUpdate(li) {
-        const form = document.createElement("form")
-        form.action = `http://localhost:3000/playlists/${li.dataset.id}`
-        form.method = "POST"
-        form.innerHTML = `
+    li.append(form)
+    return li
+}
+
+function userUpdate(li) {
+    const form = document.createElement("form")
+    form.action = `http://localhost:3000/playlists/${li.dataset.id}`
+    form.method = "POST"
+    form.innerHTML = `
                 <input type="text" name="name" placeholder="Name" value=${li.dataset.name}/>
                 <input type="submit" value="Update playlist" />
                 <input type="hidden" name="_method" value="put"/>
             `
-        li.append(form)
-        return li
-    }
-    
-    const textField = document.querySelector("#search-for")
-    const searchSong = document.querySelector("#search-song")
-    searchSong.addEventListener("submit", (event) => {
-        event.preventDefault()
-        
-        fetch(`https://deezerdevs-deezer.p.rapidapi.com/search?q=${textField.value}`, {
-            "method": "GET",
-            "headers": {
-                "x-rapidapi-host": "deezerdevs-deezer.p.rapidapi.com",
-                "x-rapidapi-key": "8384d17005mshf5e19b1581270a5p14f6bdjsn356be895ec06"
-            }})
-            .then(response => response.json())
-            .then(api => findSong(api.data))
-            
-            function findSong(songs){
-                // console.log(songs)
-                const allSongs = songs.filter(song => {
-                    return song.title.includes(textField.value);
-                })
-                if(allSongs){
-                    allSongs.map(song =>{
-                    const SongDiv = document.querySelector("#song-div")
-                    // alert("its working kinda")
-                    let h1 = document.createElement('h1')
-                    h1.innerHTML = `<a href='showsong.html?id=${song.id}'> ${song.title}</a>`
-                    console.log(song)
-                    SongDiv.appendChild(h1)
-                    })
-                }
-                else{
-                    alert("Oh no, you suck!")
-                }
-            }
+    li.append(form)
+    return li
+}
+
+const textField = document.querySelector("#search-for")
+const searchSong = document.querySelector("#search-song")
+searchSong.addEventListener("submit", (event) => {
+    event.preventDefault()
+
+    fetch(`http://localhost:3000/songs`)
+        .then(response => response.json())
+        .then(findSong)
+
+    function findSong(allSongs) {
+        const song = allSongs.find(songs => {
+            return songs.title.toLowerCase() === textField.value.toLowerCase()
         })
+        if (song) {
+                const SongDiv = document.querySelector("#song-div")
+                // alert("its working kinda")
+                let h1 = document.createElement('h1')
+                h1.innerHTML = `<a href='showsong.html?id=${song.id}'> ${song.title}</a>`
+                SongDiv.appendChild(h1)
+            }
+         else{
+            alert("Oh no, you suck!")
+        }
+    }
+})
