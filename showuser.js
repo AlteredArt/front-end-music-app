@@ -9,10 +9,11 @@ function showuser(user) {
   const showuserul = document.querySelector("#showuser-ul")
   let h1 = document.createElement('h1')
   h1.innerText = `${user.username}`
+  showuserul.appendChild(h1)
   user.playlists.map(playlist => {
     let p = document.createElement('p')
     p.innerHTML = `<a href='showplaylist.html?id=${playlist.id}'> ${playlist.name}</a>`
-    showuserul.append(h1, p)
+    showuserul.appendChild(p)
   })
 }
 
